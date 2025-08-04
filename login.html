@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/login.png" type="image/x-icon">
+  <title>Login - Zaman Medical Store</title>
+  <style>
+    .auth-body {
+      background: linear-gradient(to right, #1A2A80, #3B38A0);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .auth-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .auth-container h2 {
+      color: #1A2A80;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #7A85C1, 0 0 10px #7A85C1;
+
+    }
+
+    .auth-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .auth-container button {
+      background-color: #3B38A0;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    .auth-container button:hover {
+      background-color: #1A2A80;
+
+      box-shadow: 0 0 15px #ffd166, 0 0 30px #ffd166;
+    }
+
+    .auth-container a {
+      color: #1A2A80;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="auth-body">
+  <div class="auth-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="login-email" placeholder="Email Address" required />
+      <input type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Signup here</a></p>
+  </div>
+
+  <script>
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const enteredEmail = document.getElementById("email").value;
+      const enteredPassword = document.getElementById("password").value;
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const matchedUser = users.find(
+        user => user.email === enteredEmail && user.password === enteredPassword
+      );
+
+      if (matchedUser) {
+        // Save login state
+        localStorage.setItem("isLoggedIn", "true");
+
+        // Optional: Save current user (for welcome message, etc.)
+        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+
+        // Redirect to homepage
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("loginError").textContent = "Invalid email or password.";
+      }
+    });
+  </script>
+
+  </script>
+</body>
+
+</html>
