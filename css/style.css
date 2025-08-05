@@ -46,7 +46,6 @@ header ul li a {
 }
 
 header ul li a:hover {
-    /* background-color: #FFD166; */
     color: #ffffff;
     box-shadow: 0 0 15px #1bf7ff, 0 0 30px #1bf7ff;
     font-size: large;
@@ -79,7 +78,6 @@ section {
     flex-shrink: 0;
 }
 
-/* Black Overlay */
 .slider-overlay {
     position: absolute;
     top: 0;
@@ -89,16 +87,17 @@ section {
     background: rgba(0, 0, 0, 0.5);
 }
 
-/* Text on top of slider */
 .slider-text {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     text-align: center;
     color: white;
     z-index: 2;
     padding: 0 20px;
+    opacity: 0;
+    animation: slideInText 1.5s ease 0.5s forwards;
 }
 
 .slider-text h1 {
@@ -138,8 +137,6 @@ section {
 /* Features Section */
 .features-section {
     background-color: #ffffff;
-    /* border-top: 2px solid #7A85C1; */
-    /* border-bottom: 2px solid #7A85C1; */
     padding: 80px 25px;
 }
 
@@ -148,17 +145,18 @@ section {
     margin-top: 40px;
     color: #1A2A80;
     font-size: 2.5rem;
-    text-shadow: 0 0 10px #7A85C1 , 0 0 10px #7A85C1;
+    text-shadow: 0 0 10px #FFD166 , 0 0 10px #FFD166;
 }
 
 .feature-img {
-    /* max-height: 200px;
-    margin-bottom: 50px; */
-    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s ease;
 }
 
-.feature-img:hover {
-    transform: scale(1.08);
+.feature-img.animate {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .features-section h5 {
@@ -175,7 +173,6 @@ section {
     padding: 0 20px;
 }
 
-
 /* Footer */
 footer {
     text-align: center;
@@ -183,6 +180,23 @@ footer {
     background: #1A2A80;
     color: white;
     font-size: 0.9rem;
-    /* border-top: 1px solid #B2B0E8; */
 }
 
+/* Page Fade-in Animation */
+body.fade-in {
+    opacity: 0;
+    animation: fadeInBody 1.2s ease forwards;
+}
+
+@keyframes fadeInBody {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInText {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
