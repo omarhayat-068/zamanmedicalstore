@@ -1,8 +1,3 @@
-
-
-
-
-
 const sliderTrack = document.querySelector('.slider-track');
 const slides = document.querySelectorAll('.slider-track img');
 let currentIndex = 0;
@@ -17,6 +12,20 @@ function autoSlide() {
 
 setInterval(autoSlide, 3000);
 
-// (Optional for now – future dynamic features can be added here)
-// The slider works automatically via CSS animation.
+// Animate feature images on scroll
+window.addEventListener('scroll', () => {
+    const features = document.querySelectorAll('.feature-img');
+    features.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+            img.classList.add('animate');
+        }
+    });
+});
+
+// Add fade-in class to body on page load
+window.addEventListener('load', () => {
+    document.body.classList.add('fade-in');
+});
+
 console.log("Zaman Medical Store Script Loaded");
